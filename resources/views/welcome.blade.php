@@ -28,7 +28,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
-      <h1 class="navbar-brand" href="#"><i>Simple Portfoili Builder<i></h1>
+      <h1 class="navbar-brand" href="#"><i>Simple Portfoilio Builder<i></h1>
         @if (auth()->user())
         <a  class="btn btn-success" href="{{ route('homepage',['id'=>auth()->user()->id]) }}">Your Page <i style="margin-left:5px; " class="fa fa-arrow-right"></i></a>
         @else
@@ -79,7 +79,7 @@
               <i class="icon-screen-desktop m-auto text-primary"></i>
             </div>
             <h3>Fully Responsive</h3>
-            <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
+
           </div>
         </div>
         <div class="col-lg-4">
@@ -88,7 +88,7 @@
               <i class="icon-layers m-auto text-primary"></i>
             </div>
             <h3>Bootstrap 4 Ready</h3>
-            <p class="lead mb-0">Featuring the latest build of the new Bootstrap 4 framework!</p>
+
           </div>
         </div>
         <div class="col-lg-4">
@@ -97,7 +97,7 @@
               <i class="icon-check m-auto text-primary"></i>
             </div>
             <h3>Easy to Use</h3>
-            <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
+
           </div>
         </div>
       </div>

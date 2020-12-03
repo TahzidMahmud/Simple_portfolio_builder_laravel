@@ -24,7 +24,8 @@ class NewContactMail implements ShouldBroadcast
 
     public function __construct($id)
     {
-        $this->id=$id;
+        $this->id=(int)$id;
+
     }
 
     /**
@@ -34,10 +35,16 @@ class NewContactMail implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('contact-mail'.$this->id);
+
+
+        return new PrivateChannel('contact-mail.'.$this->id);
     }
+    public function broadcastAs()
+  {
+      return 'contact-mail';
+  }
     public function broadcastWith()
     {
-        return ['message'=>$this->message];
+        return ["data"=>"pass"];
     }
 }

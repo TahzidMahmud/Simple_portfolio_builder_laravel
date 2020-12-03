@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\ContactForm;
 use Toastr;
+use App\ContactForm;
+use Illuminate\Http\Request;
+use App\Events\NewContactMail;
 
 class ContactFormController extends Controller
 {
+    public function count(Request $request){
+        $count=ContactForm::where('for_user',$request->id)->where('seen','0')->count();
+        return response($count);
+    }
     public function contact_me(Request $request){
         ContactForm::create([
             'for_user'=>$request->id,
@@ -16,6 +21,7 @@ class ContactFormController extends Controller
             'subject'=>$request->subject,
             'message'=>$request->message,
         ]);
+        broadcast(new NewContactMail($request->id));
 
         return redirect()->back()->with('message','Thanks for contacting!');
 

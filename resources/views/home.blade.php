@@ -9,6 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
+  <script src="{{ asset('js/app.js') }}" defer></script>
 
   <title>Admin Dashboard</title>
 
@@ -19,6 +20,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="css/app.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <script src="{{ asset('js/app.js') }}" defer></script>
+
+  {{-- <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('d57bbdc0c3564f7bbe50', {
+      cluster: 'ap2',
+
+    });
+    var id={!! auth()->user()->id !!}
+
+    var channel = pusher.subscribe(`contact-mail.${id}`);
+    channel.bind('pusher:subscription_succeeded', function(data) {
+    console.log("connection success" );
+ });
+
+
+    channel.bind('contact-mail', function(data) {
+      console.log(JSON.stringify(data));
+    });
+  </script> --}}
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -40,8 +66,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link"  href="{{ route('mail.view') }}">
-          <i class="far fa-bell fa-lg" style="margin-right: 5px;"></i>
-          <span class="badge badge-warning navbar-badge">{{ $count ?? "0" }}</span>
+            <div id="app2">
+                <example-component id={{ (int)auth()->user()->id }} count={{  (int)$count }}></example-component>
+            </div>
+
         </a>
       </li>
       <li class="nav-item">
@@ -385,6 +413,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </style>
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
+
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->

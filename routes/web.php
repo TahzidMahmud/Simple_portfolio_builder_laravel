@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/','HomeController@welcome')->name('welcome');
 Route::get('/landing/{id}', 'HomeController@show')->name('homepage');
 Route::get('/search-user/{mail}','HomeController@search_user')->name('search.user');
+Route::post('/contact','ContactFormController@contact_me')->name('contact');
+Route::get('/count/{id}','ContactFormController@count');
 Auth::routes(['verify' => true]);
 Route::get('/logout', function () {
     //logout user
@@ -31,7 +33,6 @@ Route::get('/logout', function () {
 Route::middleware(['verified'])->group( function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::post('/profileupdate','HomeController@update_profile')->name('profile.update');
-    Route::post('/contact','ContactFormController@contact_me')->name('contact');
     Route::post('/education','EducationFieldController@create');
     Route::get('/education-view','EducationFieldController@index')->name('education.view');
     Route::get('/edication-delete/{id}','EducationFieldController@delete_entry')->name('education.delete');

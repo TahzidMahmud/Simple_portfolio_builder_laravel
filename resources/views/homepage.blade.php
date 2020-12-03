@@ -6,6 +6,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Favicons -->
   <link href="{{ asset('img/favicon.png') }}" rel="icon">
@@ -326,6 +327,8 @@
     <!--/ #footer -->
   </section>
   <!-- JavaScript Libraries -->
+  <script src="{{ asset('js/app.js') }}" defer></script>
+
   <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
   <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('lib/php-mail-form/validate.js') }}"></script>
@@ -339,5 +342,6 @@
            document.getElementById("cross").style.display= none;
     }
   </script>
+
 </body>
 </html>
