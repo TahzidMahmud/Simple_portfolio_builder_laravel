@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Broadcast;
 
 Broadcast::channel('contact-mail.{id}', function ($user,$id) {
 
-  return (int) $user->id === (int) $id;
+  return (int) Auth::id() === (int) $id;
+
 
 });

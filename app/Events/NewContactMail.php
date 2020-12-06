@@ -45,6 +45,6 @@ class NewContactMail implements ShouldBroadcast
   }
     public function broadcastWith()
     {
-        return ["data"=>"pass"];
+        return ["data"=>"You Have A New Contact Mail"];
     }
 }

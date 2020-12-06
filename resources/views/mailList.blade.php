@@ -56,11 +56,12 @@
 
     </div>
     <br>
+
     @empty
             <h1 style="color:red;">No Entry to Show...!</h1>
     <br>
     @endforelse
-
+    {{ $mails->links() }}
 
     @endif
     @if(is_null($mails))

@@ -21,13 +21,13 @@ class ContactFormController extends Controller
             'subject'=>$request->subject,
             'message'=>$request->message,
         ]);
-        broadcast(new NewContactMail($request->id));
+        broadcast(new NewContactMail($request->id))->toOthers();
 
         return redirect()->back()->with('message','Thanks for contacting!');
 
     }
     public function index(){
-        $mails=ContactForm::all()->where('for_user',auth()->user()->id)->where('seen',0);
+        $mails=ContactForm::where('for_user',auth()->user()->id)->where('seen',0)->paginate(5);
 
         return view('mailList',compact('mails'));
     }

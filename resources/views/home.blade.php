@@ -67,7 +67,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <li class="nav-item dropdown">
         <a class="nav-link"  href="{{ route('mail.view') }}">
             <div id="app2">
-                <example-component id={{ (int)auth()->user()->id }} count={{  (int)$count }}></example-component>
+                <example-component id={{ (int)auth()->user()->id }} :count={{ (int)$count }}></example-component>
             </div>
 
         </a>
