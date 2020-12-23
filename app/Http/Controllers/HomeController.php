@@ -50,6 +50,7 @@ class HomeController extends Controller
 
         $id=$request->id;
         $to=$request->end;
+        $genera=str_replace(' ', '-', $request->genera);
         $resume_db=null;
         $user=User::findOrFail($id);
 
@@ -87,7 +88,7 @@ class HomeController extends Controller
                 'phone_no'=> $request->phone_no,
                 'address'=>$request->address,
                 'about'=>$request->about,
-                'genera'=>$request->genera,
+                'genera'=>$genera,
                 'resume'=>$resume_db,
                 'image'=>'images/'.auth()->user()->name.'/'.$imageName,
             ]);
@@ -101,7 +102,7 @@ class HomeController extends Controller
             'phone_no'=> $request->phone_no,
             'address'=>$request->address,
             'about'=>$request->about,
-            'genera'=>$request->genera,
+            'genera'=>$genera,
             'resume'=>$resume_db,
 
 
