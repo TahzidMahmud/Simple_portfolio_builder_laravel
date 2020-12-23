@@ -450,23 +450,47 @@ scratch. This page gets rid of all links and provides the needed markup only.
     }
     </script>
 <script>
+  var count = 0;
+    console.log("count"+count);
      $("#get_link").click(function(){
     console.log("hit");
+
     let _token   = $('meta[name="csrf-token"]').attr('content');
+
+   if(count <= 0){
+    count=count+1;
+    console.log("count"+count);
     $.ajax({
        url: "/site-link",
         type:"GET",
 
         success:function(response){
+
             $('#link').append(
-                '<br/><input type="text" value="'+response+'" readonly style="width:350px;overflow-y:scroll;">'
+                '<br/><input id="myInput" type="text" value="'+response+'"  readonly style="width:300px;height:2.4rem;overflow-y:scroll; border-radius:5px;"><button class="btn btn-success" style="border-radius:5px;" onclick="myFunction()">Copy-Text</button>'
             );
 
         },
        });
+   }
 });
 </script>
+<script>
+function myFunction() {
+  /* Get the text field */
+  var copyText = document.getElementById("myInput");
 
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
+}
+</script>
 <script type="text/javascript">
 $("#add").click(function(){
 
