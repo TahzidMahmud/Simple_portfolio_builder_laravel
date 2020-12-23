@@ -22,30 +22,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <script src="{{ asset('js/app.js') }}" defer></script>
-
-  {{-- <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-  <script>
-
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher('d57bbdc0c3564f7bbe50', {
-      cluster: 'ap2',
-
-    });
-    var id={!! auth()->user()->id !!}
-
-    var channel = pusher.subscribe(`contact-mail.${id}`);
-    channel.bind('pusher:subscription_succeeded', function(data) {
-    console.log("connection success" );
- });
-
-
-    channel.bind('contact-mail', function(data) {
-      console.log(JSON.stringify(data));
-    });
-  </script> --}}
-
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -90,7 +66,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset(auth()->user()->image ? 'images/'.auth()->user()->image : 'images/avatar.jpg') }}" class="img-circle elevation-6" alt="User Image">
+          <img src="{{ asset((auth()->user()->image ? auth()->user()->image : 'images/avatar.jpg')) }}" class="img-circle elevation-5" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ auth()->user()->name }}</a>

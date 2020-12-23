@@ -57,7 +57,7 @@
               </div>
             </div>
             <div class="row">
-                <div class="col-md-6 col-sm-12 col-lg-6">
+                <div class="col-md-6 col-sm-12 col-lg-6 offset-2">
                     <div class="container" id="result"></div>
 
                     </div>
@@ -87,7 +87,7 @@
             <div class="features-icons-icon d-flex">
               <i class="icon-layers m-auto text-primary"></i>
             </div>
-            <h3>Bootstrap 4 Ready</h3>
+            <h3>Show-Case Ready</h3>
 
           </div>
         </div>
@@ -158,7 +158,7 @@
               <a href="#">Privacy Policy</a>
             </li>
           </ul>
-          <p class="text-muted small mb-4 mb-lg-0">&copy; Auntu Ahmed 2020. All Rights Reserved.</p>
+          <p class="text-muted small mb-4 mb-lg-0">&copy; Tahzid Mahmud Suvo 2020. All Rights Reserved.</p>
         </div>
         <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
           <ul class="list-inline mb-0">
@@ -201,19 +201,16 @@ function search(){
                       // Response
                       var response = this.response;
                       var res=JSON.parse(response);
-                      console.log(res[0].message);
-                      var image;
-                        if(res.image){
-                            image=res.image;
-                        }
-                        image="avatar.jpg";
+                      var image= res[0].image ? res[0].image : 'avatar.jpg' ;
+
+
                         var result=document.getElementById('result');
                        if(res[0].message ==="result found"){
                          result.innerHTML=`
                         <br>
                         <h3 style="color:#00973E;text-aling:center;"> Search Results...!</h3>
                             <div class="card" >
-                                <img class="card-img-top" src="../../images/${image}" alt="Card image cap">
+                                <img class="card-img-top" src="../../${image}" style="height:250px;width:100%;" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 style="z-index:100; color:black;" class="">${res[0].name}</h5>
                                     <p class="" style="z-index:100; color:black;">${res[0].email}</p>

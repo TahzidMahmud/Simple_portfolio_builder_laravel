@@ -73,7 +73,7 @@
   </div>
   <!--/ #section-topbar -->
 
-  <div id="headerwrap" style="background:url({{ asset($image ?? "") }})no-repeat center top;background-size: cover!important;background-position: center center!important;min-height:100vh;">
+  <div id="headerwrap" style="background:url({{ asset($image ?? "") }})no-repeat center;background-size: cover!important;min-height:100vh;">
     <div class="container">
         <div clas="row centered">
             <div class="col-md-12" style="min-height:30vh!important;"></div>
