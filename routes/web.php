@@ -39,7 +39,7 @@ Route::middleware(['verified'])->group( function () {
     Route::get('/edication-delete/{id}','EducationFieldController@delete_entry')->name('education.delete');
     Route::get('/education-edit/{id}','EducationFieldController@edit')->name('education.edit');
     Route::post('/education-update','EducationFieldController@update')->name('education.update');
-    route::post('/workfield-create','workFieldController@store')->name('workfield.create');
+    route::post('/workfield-create','WorkFieldController@store')->name('workfield.create');
     route::get('/workfield-list','workFieldController@index')->name('workfield.list');
     route::get('/workfield-delete/{id}','workFieldController@delete')->name('workfield.delete');
     route::get('/workfield-edit/{id}','workFieldController@edit')->name('workfield.edit');
