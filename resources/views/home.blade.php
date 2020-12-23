@@ -30,12 +30,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
         display:none;
         color: white;
       }
+      #myBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        background-color:rgb(16, 231, 231);
+        color: white;
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 20px;
+        }
 
+        #myBtn:hover {
+        background-color: #555;
+        }
     </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -198,24 +216,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" style="max-height: 100vh; overflow-y:scroll;">
+  <div class="content-wrapper" >
 
 
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            <a class="btn" style="background-color: rgb(86, 226, 203)" href="{{ route('homepage',['id' => auth()->user()->id]) }}"><h1 class="m-0 text-white">Visit Your Site <i class="fa fa-arrow-right"></i></h1></a >
+          <div class="col-sm-6 col-md-6" style="margin-right:0px;padding-right:0px;">
+            <a class="btn" style="background-color: rgb(86, 226, 203);z-index:100;" href="{{ route('homepage',['id' => auth()->user()->id]) }}"><h6 class="m-0 text-white">Visit-Site <i class="fa fa-arrow-right"></i></h6></a >
           </div><!-- /.col -->
-
+          <div class="col-sm-6 col-md-6 " style="margin-left: 0px;padding-left: 0px;">
+            <button id="get_link" class="btn float-right" style="background-color: rgb(86, 226, 203);"><h6 class="m-0 text-white"><i class="fa fa-arrow-left"></i> Get-Link</h6></button >
+                <br>
+                <div id="link"></div>
+          </div>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="content">
+    <div id="content" class="content">
       <div class="container-fluid">
         <div class="row">
             <div class="col-md-2"></div>
@@ -406,7 +428,44 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+<script>
+    //Get the button
+    var mybutton = document.getElementById("myBtn");
 
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+    </script>
+<script>
+     $("#get_link").click(function(){
+    console.log("hit");
+    let _token   = $('meta[name="csrf-token"]').attr('content');
+    $.ajax({
+       url: "/site-link",
+        type:"GET",
+
+        success:function(response){
+            $('#link').append(
+                '<br/><input type="text" value="'+response+'" readonly style="width:350px;overflow-y:scroll;">'
+            );
+
+        },
+       });
+});
+</script>
 
 <script type="text/javascript">
 $("#add").click(function(){

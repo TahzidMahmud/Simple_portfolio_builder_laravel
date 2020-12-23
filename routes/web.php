@@ -51,4 +51,5 @@ Route::middleware(['verified'])->group( function () {
     Route::post('/award-update','AwardController@update')->name('award.update');
     Route::get('/mails-list','ContactFormController@index')->name('mail.view');
     Route::post('/mails-list','ContactFormController@mark')->name('mail.mark');
+    Route::get('/site-link','HomeController@get_link')->name('site.link');
 });

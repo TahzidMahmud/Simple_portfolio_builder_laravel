@@ -8,6 +8,7 @@ use App\EducationField;
 use App\WorkField;
 use App\ContactForm;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 use App\Award;
@@ -169,5 +170,9 @@ class HomeController extends Controller
                 'Content-Type' => 'application/pdf'
             ]);
         }
+    }
+    public function get_link(){
+        $url=url()->to('/').'/landing/'.auth()->user()->id;
+        return  response($url);
     }
 }
