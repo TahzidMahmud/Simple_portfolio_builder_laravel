@@ -73,10 +73,10 @@
   </div>
   <!--/ #section-topbar -->
 
-  <div id="headerwrap" style="background:url({{ asset($image ?? "") }})no-repeat center;background-size: cover!important;min-height:100vh;">
+  <div id="headerwrap" style="background: url({{ asset($user->image ?? "") }}) no-repeat center ; background-size: cover!important;min-height:100vh;">
     <div class="container">
         <div clas="row centered">
-            <div class="col-md-12" style="min-height:30vh!important;"></div>
+            <div class="col-md-12" style="min-height:40vh!important;"></div>
         </div>
       <div class="row centered">
         <div class="col-md-12">
@@ -104,9 +104,13 @@
             <p>{{  $about}}</p>
           </div>
           <div class="col-lg-3">
-            <p><a href="#"><i class="icon-file"></i></a>
-              <sm>DOWNLOAD PDF</sm>
-            </p>
+           @if($user->resume)
+            <a href="{{ route('download.cv',['id'=>$id]) }}">
+                <p><i class="fa fa-file"></i>
+                <sm>Download My CV</sm>
+                </p>
+            </a>
+          @endif
           </div>
 
         </div>

@@ -22,6 +22,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <script src="{{ asset('js/app.js') }}" defer></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+      #edit{
+        display:none;
+        color: white;
+      }
+
+    </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -88,31 +98,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#skill_section" class="nav-link smothscroll" >
+                <a href="#skill_section" class="nav-link " >
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Skills</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#personal_info" class="nav-link scroll-smooth">
+                <a href="#personal_info" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Personal Info</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#social_media" class="nav-link smothscroll">
+                <a href="#social_media" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Mange Social Media Links</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#education_section" class="nav-link smothscroll">
+                <a href="#education_section" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Education Info</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#award_section" class="nav-link smothscroll">
+                <a href="#award_section" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Awards & Achievements</p>
                 </a>
@@ -188,7 +198,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="max-height: 100vh; overflow-y:scroll;">
 
 
     <!-- Content Header (Page header) -->
@@ -242,9 +252,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
 
             <div class="card card-primary" id="social_media">
+                <div class="card-header">Add Or Update Social Media Links</div>
 
               <div class="card-body" >
-                <h5 class="card-title form-group">Add Or Update Social Media Links</h5><br><br><br>
                 <label for="socaila_links[facebook]">Facebook </label>
                 <input class="form-control form-group" type="text" name="social_links[facebook]" placeholder="Put Facebook Profile Link" >
                 <label for="socaila_links[linkedin]">LinkedIn </label>
@@ -262,9 +272,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             {{-- education section --}}
 
             <div class="card card-primary " id="education_section">
+                <div class="card-header">Add Or Update Education Details</div>
 
                 <div class="card-body">
-                  <h5 class="card-title form-group">Add Or Update Education Details</h5><br><br>
                   <label for="title">Degree </label>
                   <input class="form-control form-group" type="text" id="title" name="title" placeholder="Put Degree title" >
                   <label for="institution">Institution </label>
@@ -290,6 +300,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
             {{-- Awards section --}}
             <div class="card card-primary" id="award_section">
+                <div class="card-header">Add Awards/Achievements</div>
                 <div class="card-body">
                     <label for="award">Award </label>
                     <input class="form-control form-group" type="text" id="award" name="award" placeholder="Put Award title" >
@@ -304,8 +315,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
             {{-- work section --}}
             <div class="card card-primary ">
+                <div class="card-header">Add Or Update Work Details</div>
                 <div class="card-body">
-                    <h5 class="card-title form-group">Add Or Update Work Details</h5><br><br>
+
                   <label for="title">Job Title </label>
                   <input class="form-control form-group" type="text" id="work_title" name="work_title" placeholder="Put Job title" >
                   <label for="company">Company </label>
@@ -337,9 +349,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             {{-- personal info section --}}
             <div class="card card-primary " id="personal_info">
-
+                <div class="card-header">Add Or Update Personal Information</div>
                 <div class="card-body">
-                  <h5 class="card-title form-group">Add Or Update Personal Information</h5><br><br>
+
                   <label for="address">Name </label>
                   <input class="form-control form-group" type="text" name="name" placeholder="Put Name"  value={{ Auth::user()->name ?? "" }}>
                   <label for="address">Email </label>
@@ -355,10 +367,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <label for="image" class="btn btn-primary form-group" id="selector" style="cursor: pointer;">Select Image <i class="fas fa-image"></i></label>
 
                   <input class="form-group form-control" style="opacty:1;position: absolute;z-index:-1;" type="file" id="image" name="image">
+
+                    {{-- resume file --}}
+                   <br><label >Add Your Resume/CV File(Optional)</small></label><br>
+                    <label for="resume" class="btn btn-primary form-group"  style="cursor: pointer;">Select File <i class="fas fa-folder"></i></label>
+
+                    <input class="form-group form-control" style="opacty:1;position: absolute;z-index:-1;" type="file" id="resume" name="resume">
                 </div>
 
               </div>
-            <input type="submit" class="btn btn-primary form-group form-control">
+            <input type="submit" class="btn btn-success form-group form-control">
         </form><!-- /.card -->
         </div>
 
@@ -380,14 +398,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-<style>
-  #edit{
-    display:none;
-    color: white;
 
-
-  }
-</style>
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 
@@ -395,6 +406,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+
 
 <script type="text/javascript">
 $("#add").click(function(){

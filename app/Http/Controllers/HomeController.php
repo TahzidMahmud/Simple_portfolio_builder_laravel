@@ -50,6 +50,7 @@ class HomeController extends Controller
 
         $id=$request->id;
         $to=$request->end;
+        $resume_db=null;
         $user=User::findOrFail($id);
 
         $social_links=$user->social_links;
@@ -57,6 +58,16 @@ class HomeController extends Controller
         if(!is_null($social_links)){
 
             array_push($social_links,$request->social_links);
+        }
+        if($request->file('resume')){
+
+
+            auth()->user()->resume ?File::delete( public_path(auth()->user()->resume)): '';
+
+            $resume= $request->resume;
+            $resumeName=$request->file('resume')->getClientOriginalName().time().$request->file('resume')->getClientOriginalExtension();
+            $resume->move(public_path('resumes/'.auth()->user()->name.'/'),$resumeName);
+            $resume_db='resumes/'.auth()->user()->name.'/'.$resumeName;
         }
 
         if ($request->file('image')) {
@@ -77,13 +88,11 @@ class HomeController extends Controller
                 'address'=>$request->address,
                 'about'=>$request->about,
                 'genera'=>$request->genera,
+                'resume'=>$resume_db,
                 'image'=>'images/'.auth()->user()->name.'/'.$imageName,
             ]);
 
-          }
-
-
-
+        }
         $user->update([
             'skills'=>$request->skills,
             'social_links'=>$request->social_links,
@@ -93,8 +102,12 @@ class HomeController extends Controller
             'address'=>$request->address,
             'about'=>$request->about,
             'genera'=>$request->genera,
+            'resume'=>$resume_db,
+
 
         ]);
+
+
 
 
         return redirect()->route('home');
@@ -125,7 +138,7 @@ class HomeController extends Controller
         $awards=Award::all()->where('user_id',$id);
 
 
-        return view('homepage',compact('skills','social_links','email','name','address','phone_no','id','about','education','work_field','image','genera','awards'));
+        return view('homepage',compact('skills','user','social_links','email','name','address','phone_no','id','about','education','work_field','image','genera','awards'));
     }
 
     public function search_user(Request $request){
@@ -138,5 +151,22 @@ class HomeController extends Controller
             $data[0]["message"]="result found";
         }
          return response($data);
+    }
+
+    public function download_cv($id){
+        $user=User::findOrFail($id);
+
+        $file_path=public_path().'/'.$user->resume;
+        $headers = array(
+            'Content-Type' => 'application/pdf',
+        );
+        $headers=implode(" ",$headers);
+
+        if(file_exists($file_path)){
+
+            return response()->download($file_path,$user->name.'cv.pdf',[
+                'Content-Type' => 'application/pdf'
+            ]);
+        }
     }
 }

@@ -21,6 +21,7 @@ Route::get('/landing/{id}', 'HomeController@show')->name('homepage');
 Route::get('/search-user/{mail}','HomeController@search_user')->name('search.user');
 Route::post('/contact','ContactFormController@contact_me')->name('contact');
 Route::get('/count/{id}','ContactFormController@count');
+Route::get('/cv/{id}','HomeController@download_cv')->name('download.cv');
 Auth::routes(['verify' => true]);
 Route::get('/logout', function () {
     //logout user
