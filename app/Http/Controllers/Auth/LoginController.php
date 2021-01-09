@@ -46,7 +46,7 @@ class LoginController extends Controller
     }
 
     public function handle_facebook_callback(){
-        $user = Socialite::driver('facebook')->user();
+        $user = Socialite::driver('facebook')->stateless()->user();
         // dd($user->email);
         $user = User::firstOrCreate([
             'email' => $user->email
@@ -56,6 +56,7 @@ class LoginController extends Controller
             'password' => "12345678",
         ]);
         Auth::login($user);
+        return redirect()->route('home');
     }
 
 }

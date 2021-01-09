@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/','HomeController@welcome')->name('welcome');
 Route::get('/login/facebook/callback','Auth\LoginController@handle_facebook_callback');
-Route::get('/login/facebook','Auth\LoginController@handle_facebook_redirect');
+Route::get('/login/facebook','Auth\LoginController@handle_facebook_redirect')->name('facebook.login');
 
 Route::get('/landing/{id}', 'HomeController@show')->name('homepage');
 Route::get('/search-user/{mail}','HomeController@search_user')->name('search.user');

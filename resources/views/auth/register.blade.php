@@ -81,10 +81,16 @@
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
-                                </button>
+                                </button>  OR
+                                  {{-- <div class="form-group "> --}}
+                                    <a href="{{ route("facebook.login") }}" class="btn btn-primary"><i class="fa fa-facebook m-2"></i>Log In With Fcebook</a>
+                                    {{-- </div> --}}
                             </div>
+
                         </div>
+
                     </form>
+
                 </div>
             </div>
         </div>
